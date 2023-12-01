@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css    "
     />
+    <link rel="stylesheet" href="auth.css" />
   </head>
   <body>
     <header>
@@ -39,5 +40,85 @@
         <a href="home.html"><button>FIND YOUR STYLE</button></a> 
       </div>
     </header>
+    <div class="container">
+      <form id="authForm" class="auth-form" onsubmit="return authenticate()">
+          <h2>Authentification</h2>
+
+          <!-- Champs de connexion -->
+          <div id="loginFields">
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" required>
+
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required>
+
+              <button type="submit">Login</button>
+
+              <p onclick="toggleForm()">Register here</p>
+          </div>
+
+          <!-- Champs d'inscription -->
+          <div id="signupFields" style="display: none;">
+              <label for="newUsername">New Username:</label>
+              <input type="text" id="newUsername" name="newUsername" required>
+
+              <label for="newPassword">New Password:</label>
+              <input type="password" id="newPassword" name="newPassword" required>
+
+              <button type="submit">Login </button>
+
+              <p onclick="toggleForm()">Log in</p>
+          </div>
+      </form>
+  </div>
+
+  <script>
+      function toggleForm() {
+          var loginFields = document.getElementById("loginFields");
+          var signupFields = document.getElementById("signupFields");
+
+          if (loginFields.style.display === "none") {
+              loginFields.style.display = "block";
+              signupFields.style.display = "none";
+          } else {
+              loginFields.style.display = "none";
+              signupFields.style.display = "block";
+          }
+      }
+
+      function authenticate() {
+        // Vérifier les champs requis
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var newUsername = document.getElementById("newUsername").value;
+        var newPassword = document.getElementById("newPassword").value;
+
+        if (!username) {
+            document.getElementById("usernameError").innerText = "Please fill in this field";
+            return false;
+        }
+
+        if (!password) {
+            document.getElementById("passwordError").innerText = "Please fill in this field";
+            return false;
+        }
+
+        if (!newUsername) {
+            document.getElementById("newUsernameError").innerText = "Please fill in this field";
+            return false;
+        }
+
+        if (!newPassword) {
+            document.getElementById("newPasswordError").innerText = "Please fill in this field";
+            return false;
+        }
+
+        // Ajouter ici la logique d'authentification
+        alert("Authentication in progress...");
+        return false; // Empêche le formulaire de se soumettre normalement
+    }
+</script>
+  </script>
+  </div>
   </body>
 </html>
